@@ -34,6 +34,7 @@ jobs:
         # environment: prod
           environment_targets: "Production,Development"  # the environments that you can deploy to with explicit commands
           update_branch: "disabled"
+          stable_branch: "master"
 
      # Run your deployment logic for your project here - examples seen below
      
