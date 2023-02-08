@@ -38,6 +38,8 @@ jobs:
      # Run your deployment logic for your project here - examples seen below
      
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ steps.branch-deploy.outputs.ref }}
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
