@@ -19,6 +19,8 @@ permissions:
 jobs:
   build:
     runs-on: windows-latest
+    outputs:
+      env_name: ${{ steps.branch-deploy.outputs.environment }}
     if: ${{ github.event.issue.pull_request }}
     steps:
       # Execute IssueOps branch deployment logic, hooray!
@@ -31,6 +33,7 @@ jobs:
           trigger: ".deploy"
         # environment: prod
           environment_targets: "Production,Development"  # the environments that you can deploy to with explicit commands
+          update_branch: "disabled"
 
      # Run your deployment logic for your project here - examples seen below
      
@@ -58,7 +61,8 @@ jobs:
   deploy_to_dev:
     runs-on: windows-latest
     needs: build
-    if: ${{ steps.branch-deploy.outputs.environment == "Development" }}
+#   if: ${{ jobs.build.steps.branch-deploy.outputs.environment == "Development" }}
+    if: ${{ needs.build.outputs.env_name == 'Development' }}
     environment:
       name: 'Development'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
@@ -82,7 +86,8 @@ jobs:
   deploy_to_prod:
     runs-on: windows-latest
     needs: build
-    if: ${{ steps.branch-deploy.outputs.environment == "Production" }}
+  # if: ${{ jobs.build.steps.branch-deploy.outputs.environment == "Production" }}
+    if: ${{ needs.build.outputs.env_name == 'Production' }}
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
