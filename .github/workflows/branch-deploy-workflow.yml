@@ -33,6 +33,7 @@ jobs:
           trigger: ".deploy"
         # environment: prod
           environment_targets: "Production,Development"  # the environments that you can deploy to with explicit commands
+          update_branch: "disabled"
 
      # Run your deployment logic for your project here - examples seen below
      
