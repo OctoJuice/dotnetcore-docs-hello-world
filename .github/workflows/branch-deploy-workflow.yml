@@ -85,7 +85,7 @@ jobs:
   deploy_to_prod:
     runs-on: windows-latest
     needs: build
-  # if: ${{ jobs.build.steps.branch-deploy.outputs.environment == "Production" }}
+  # if: ${{ jobs.build.steps.branch-deploy.outputs.environment == 'Production' }}
     if: ${{ needs.build.outputs.env_name == "Production" }}
     environment:
       name: 'Production'
