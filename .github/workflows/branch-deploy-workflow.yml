@@ -77,9 +77,8 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FFA2E1C6D75547E6AB167D39C592DEC5 }}
           package: .
-					
-	
-
+	  
+	  
 # deploy to production 
   deploy_to_prod:
     runs-on: windows-latest
