@@ -21,8 +21,6 @@ jobs:
     runs-on: windows-latest
     if: ${{ github.event.issue.pull_request }}
     steps:
-		
-		
       # Execute IssueOps branch deployment logic, hooray!
       # This will be used to "gate" all future steps below and conditionally trigger steps/deployments
 
@@ -32,12 +30,10 @@ jobs:
         with:
           trigger: ".deploy"
         # environment: prod
-        environment_targets: "Production,Development"  # the environments that you can deploy to with explicit commands
+          environment_targets: "Production,Development"  # the environments that you can deploy to with explicit commands
 
      # Run your deployment logic for your project here - examples seen below
-
-		
-		
+     
       - uses: actions/checkout@v2
 
       - name: Set up .NET Core
